@@ -1,0 +1,34 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2>{{ username }}'s Cart</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h1> Products <small class="float-right">{{ all_products.count() }} Products </small></h1>
+        <ul class="media-list">
+            {% for product in all_products %}
+            <li class="media review-item">
+                <div class="media-body">
+                    <strong>For: <a href="{{ url_for('products.product_detail', product_name=product.product_name) }}">
+                            {{ product.product_name }}
+                        </a>
+                    </strong>
+                    <p>
+                        <strong> Price: </strong> <medium>${{ product.price }} </medium>
+                    </p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <form action="" method="post">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                {{ form.submit }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
