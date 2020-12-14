@@ -56,12 +56,6 @@ def product_detail(product_name):
     except ValueError:
         return redirect(url_for("users.login"))
 
-    bform = AddCartForm()
-    if bform.validate_on_submit() and current_user.is_authenticated:
-        product.buyer = current_user._get_current_object()
-        product.save()
-        return redirect(url_for("products.user_buy", username=current_user.username))
-
     form = ProductReviewForm()
     if form.validate_on_submit() and current_user.is_authenticated:
         review = Review(
@@ -73,6 +67,12 @@ def product_detail(product_name):
         review.save()
 
         return redirect(request.path)
+
+    bform = AddCartForm()
+    if bform.validate_on_submit() and current_user.is_authenticated:
+        product.buyer = current_user._get_current_object()
+        product.save()
+        return redirect(url_for("products.user_buy", username=current_user.username))
 
     reviews = Review.objects(product_name=product_name)  # not sure if this works
     return render_template(
