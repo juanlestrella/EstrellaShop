@@ -55,9 +55,9 @@ def create_app(test_config=None):
     import os
     app = Flask(__name__)
 
-    app.config.from_pyfile("config.py", silent=False)
+    #app.config.from_pyfile("config.py", silent=False)
 
-    #app.config["MONGODB_HOST"] = os.getenv("MONGODB_HOST")
+    app.config["MONGODB_HOST"] = os.getenv("MONGODB_HOST")
 
 
     if test_config is not None:
