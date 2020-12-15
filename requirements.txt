@@ -57,3 +57,4 @@ urllib3==1.25.11
 websocket-client==0.57.0
 Werkzeug==1.0.1
 WTForms==2.3.3
+qrcode
